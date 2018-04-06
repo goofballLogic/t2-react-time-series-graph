@@ -1,2 +1,2 @@
-##What does the graph look like?
+## What does the graph look like?
 
