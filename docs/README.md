@@ -1,3 +1,4 @@
 ---
+title: yo
 ---
 hello world
