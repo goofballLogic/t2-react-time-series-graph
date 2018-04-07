@@ -5,4 +5,5 @@ title: Home
 
 # What does a graph look like?
 
-[./sample.png]
+![An example](sample.png)
+
