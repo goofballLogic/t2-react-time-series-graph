@@ -2,9 +2,7 @@
 layout: default
 title: Home
 ---
-Hello there
 
-# A title
-```javascript
-alert( 1 );
-```
+# What does a graph look like?
+
+[./sample.png]
