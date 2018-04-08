@@ -3,4 +3,4 @@ import TimeSeriesTooltip from "./TimeSeriesTooltip";
 import accumulate from "./accumulate";
 
 export default TimeSeriesGraph;
-export { TimeSeriesTooltip, accumulate };
+export { TimeSeriesGraph, TimeSeriesTooltip, accumulate };
