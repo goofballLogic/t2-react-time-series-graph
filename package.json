@@ -1,6 +1,6 @@
 {
   "name": "tc2-react-time-series-graph",
-  "version": "1.0.1",
+  "version": "0.0.1",
   "description": "This is the documentation for https://github.com/goofballLogic/tc2-react-time-series-graph",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/goofballLogic/tc2-react-time-series-graph/issues"
   },
-  "homepage": "https://github.com/goofballLogic/tc2-react-time-series-graph#readme"
+  "homepage": "https://github.com/goofballLogic/tc2-react-time-series-graph#readme",
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
+  }
 }
