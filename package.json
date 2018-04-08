@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/goofballLogic/tc2-react-time-series-graph#readme",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "tc2-react-time-series-graph": "0.0.1",
