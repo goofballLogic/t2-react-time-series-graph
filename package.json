@@ -1,12 +1,11 @@
 {
-  "name": "tc2-react-time-series-graph-docs",
+  "name": "tc2-react-time-series-graph",
   "version": "1.0.0",
   "description": "This is the documentation for https://github.com/goofballLogic/tc2-react-time-series-graph",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/goofballLogic/tc2-react-time-series-graph.git"
