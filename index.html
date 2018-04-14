@@ -10,17 +10,90 @@ This one has some custom CSS applied to it:
 
 <style>
 
+    .live-example {
+
+        font-size: 8pt;
+        
+    }
+    .live-example .tooltip {
+
+        background-color: rgba( 255, 255, 255, 0.9 );
+        box-shadow: 3px 3px 1px 1px silver;
+        padding: 10px;
+        min-width: 150px;
+        text-align: center;
+        border: solid 1px black;
+
+    }
+    .live-example .tooltip p {
+
+        margin: 0;
+        font-size: 1.2em;
+        line-height: 1.5;
+
+    }
+    .live-example .tooltip .when {
+
+        background-color: black;
+        color: white;
+        padding: 10px;
+        margin: -10px -10px 5px -10px;
+
+    }
+    .live-example .tooltip .scores {
+
+        display: flex;
+        white-space: nowrap;
+
+    }
+    .live-example .tooltip .scores .score-name,
+    .live-example .tooltip .scores .score-score {
+
+        flex: 1;
+        text-align: left;
+
+    }
+    .live-example .tooltip .scores .score-score {
+
+        text-align: right;
+
+    }
+    .live-example path {
+
+        stroke-width: 4;
+        stroke-opacity: 0.5;
+
+    }
+
     .live-example .data-editor {
 
         display: flex;
 
     }
-    .live-example .data-editor textarea {
+    .live-example .data-editor > div {
 
         flex: 1;
-        min-height: 300px;
-        margin: 10px;
+
+    }
+    .live-example .data-editor > div + div {
+
+        margin-left: 10px;
+
+    }
+    .live-example .editor {
+
+        padding: 20px;
+        background-color: #FAFAFA;
         
+    }
+    .live-example textarea {
+
+        min-height: 300px;
+        width: 100%;
+        font-family: monospace;
+        border: none;
+        background-color: transparent;
+
     }
 
 </style>
