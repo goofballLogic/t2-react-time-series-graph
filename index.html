@@ -102,10 +102,78 @@ This one has some custom CSS applied to it:
         background-color: #FAFAFA;
         padding: 20px;
         margin-right: 100px;
-        
+
+    }
+    .code-sample {
+
+        font-size: 8pt;
+        background-color: #F7F7F7;
+        padding: 20px;
+
     }
 
 </style>
+<h1>Sample code</h1>
+<article id="sample-code">
+
+    <p>At a minimum you need to supply two bits of data to render the graph:</p>
+    <h3>1. Series</h3>
+    <p>The series is an array of objects - one per line on the graph. Here's an example with two series (Imran in red, Gareth in blue):</p>
+    <pre class="code-sample">const series = [
+    { "name": "Imran", "id": "imr", "color": "255,0,0" },
+    { "name": "Gareth", "id": "gar", "color": "0,0,103" }
+];</pre>
+    <p>The id property is important because it's what you use to identify an event for that series.</p>
+    <h3>2. Data (calculated from a list of events)</h3>
+    <p>A list of events is the raw information which will be processed to produce the data points for the plot. There can be multiple events on a given date, even for a single series. There also may be no events for a specific event on a given date.</p>
+    <aside> Note that in this example below there are events against a series id which doesn't exist in the series supplied ("nia") so this data will not be plotted on the graph.</aside>
+    <pre class="code-sample">const events = [
+    { "id": "imr", "when": "2017-11-10", "score": 4 },
+    { "id": "gar", "when": "2017-11-24", "score": 4 },
+    { "id": "nia", "when": "2017-10-20", "score": 2 },
+    { "id": "imr", "when": "2017-11-10", "score": -3 },
+    { "id": "gar", "when": "2017-11-10", "score": 1 }
+];</pre>
+    <p>This list of events must be aggregated and sorted into order to produce the data points for the plot. An "accumulate" function is provided to do this for you. For example, the list of events above would be accumulated to produce:</p>
+    <pre class="code-sample">const data = accumulate( events );
+console.log( data );
+
+[
+    {
+        "when": 1508457600000,
+        "dateWhen": "2017-10-20T00:00:00.000Z",
+        "events": [ 
+            { "id": "nia", "when": "2017-10-20", "score": 2 } 
+        ],
+        "points": { "nia": [ 2 ] },
+        "runningTotals": { "nia": 2 }
+    },
+    {
+        "when": 1510272000000,
+        "dateWhen": "2017-11-10T00:00:00.000Z",
+        "events": [
+            { "id": "imr", "when": "2017-11-10", "score": 4 },
+            { "id": "imr", "when": "2017-11-10", "score": -3 },
+            { "id": "gar", "when": "2017-11-10", "score": 1 }
+        ],
+        "points": { "imr": [ 4, -3 ], "gar": [ 1 ] },
+        "runningTotals": { "nia": 2, "imr": 1, "gar": 1 }
+    },
+    {
+        "when": 1511481600000,
+        "dateWhen": "2017-11-24T00:00:00.000Z",
+        "events": [
+            { "id": "gar", "when": "2017-11-24", "score": 4 }
+        ],
+        "points": { "gar": [ 4 ] },
+        "runningTotals": { "nia": 2, "imr": 1, "gar": 5 }
+    }
+]</pre>    
+    <p>Our sample dataset produces a very simple graph like this:</p>
+    <pre class="code-sample">&lt;TimeSeriesGraph data={data} series={series} /&gt;</pre>
+    <img src="simple.png" />
+</article>
+<h1>Live example</h1>
 <article id="live-example">
 </article>
 
