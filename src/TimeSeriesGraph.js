@@ -37,6 +37,11 @@ function ensureDefaults( seriesIds, tidyData, startRagged, endRagged  ) {
 const TimeSeriesGraph = props => {
 
     const { formatTick, data, series, endRagged, startRagged } = props;
+    if ( !data ) { throw new Error( "Missing property: data" ); }
+    if ( !series ) { throw new Error( "Missing property: series" ); }
+    if ( !data.length ) { return <div>No data</div>; }
+    if ( !series.length ) { return <div>No series</div>; }
+
     const tidyData = JSON.parse( JSON.stringify( data ) );
     const seriesIds = series.map( x => x.id );
     ensureDefaults( seriesIds, tidyData, startRagged, endRagged );
