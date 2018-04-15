@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import TimeSeriesGraph from "./TimeSeriesGraph";
 import TimeSeriesTable from "./TimeSeriesTable";
+import TimeSeriesEventTable from "./TimeSeriesEventTable";
 import { generateSeries, generateEventData } from "./live-example-data";
 import accumulate from "./accumulate";
 import debounce from "debounce";
@@ -21,6 +22,7 @@ function seedData() {
 
 const GRAPH = "0";
 const TABLE = "1";
+const EVENTS = "2";
 
 const simpleDateFormat = x => new Date( x ).toDateString();
 
@@ -63,6 +65,7 @@ export class LiveExample extends Component {
 
     componentDidCatch( error, info ) {
 
+        console.error( error );
         this.setState( { error } );
 
     }
@@ -78,6 +81,11 @@ export class LiveExample extends Component {
         if ( JSON.stringify( this.state.goodData ) !== JSON.stringify( this.state.data ) ) {
 
             this.setState( { goodData: this.state.data } );
+
+        }
+        if ( JSON.stringify( this.state.goodEvents ) !== JSON.stringify( this.state.events ) ) {
+
+            this.setState( { goodEvents: this.state.events } );
 
         }
 
@@ -102,6 +110,7 @@ export class LiveExample extends Component {
 
                     <option value={ GRAPH }>Graph</option>
                     <option value={ TABLE }>Table</option>
+                    <option value={ EVENTS }>Events</option>
 
                 </select>
                 <p>
@@ -123,6 +132,13 @@ export class LiveExample extends Component {
                         formatTableDate={ simpleDateFormat }
                         selectWhen={ when => this.selectWhen( when ) } />
                 
+                    : this.state.display === EVENTS
+                    ? <TimeSeriesEventTable
+                        events={ this.state.error ? this.state.goodEvents : this.state.events }
+                        series={ this.state.error ? this.state.goodSeries : this.state.series }
+                        formatTableDate={ simpleDateFormat }
+                        selectEvent={ evt => this.selectEvent( evt ) } />
+                        
                     : <TimeSeriesGraph 
                         data={this.state.error ? this.state.goodData : this.state.data} 
                         series={this.state.error ? this.state.goodSeries: this.state.series}
