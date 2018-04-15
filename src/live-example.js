@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import TimeSeriesGraph from "./TimeSeriesGraph"
+import TimeSeriesGraph from "./TimeSeriesGraph";
+import TimeSeriesTable from "./TimeSeriesTable";
 import { generateSeries, generateEventData } from "./live-example-data";
 import accumulate from "./accumulate";
 import debounce from "debounce";
@@ -18,6 +19,9 @@ function seedData() {
 
 }
 
+const GRAPH = "0";
+const TABLE = "1";
+
 export class LiveExample extends Component {
 
     constructor() {
@@ -25,6 +29,7 @@ export class LiveExample extends Component {
         super();
         this.state = seedData();
         this.state.key = Date.now();
+        this.state.display = GRAPH;
 
     }
 
@@ -68,18 +73,27 @@ export class LiveExample extends Component {
 
     }
 
+    handleChangeComponent() {
+
+        this.setState( { display: this.componentSelect.value } );
+
+    }
+
     render() {
 
         return (
 
             <article className="live-example" key={this.state.key}>
-        
-                <h1>Example</h1>
-                <TimeSeriesGraph 
-                    data={this.state.error ? this.state.goodData : this.state.data} 
-                    series={this.state.error ? this.state.goodSeries: this.state.series}
-                    startRagged={this.state.startRagged}
-                    endRagged={this.state.endRagged} />
+
+                <select 
+                    ref={ x => this.componentSelect = x } 
+                    onChange={ this.handleChangeComponent.bind( this ) }
+                    value={ this.state.display }>
+
+                    <option value={ GRAPH }>Graph</option>
+                    <option value={ TABLE }>Table</option>
+
+                </select>
                 <p>
 
                     <button onClick={() => this.handleClick()}>Regenerate data</button>
@@ -91,6 +105,19 @@ export class LiveExample extends Component {
                     &nbsp;&nbsp;&nbsp;<label>End ragged <input type="checkbox" onClick={ () => this.restate() } ref={ x => this.endRagged = x } /></label>
 
                 </p>
+                { this.state.display === TABLE
+                
+                    ? <TimeSeriesTable
+                        data={ this.state.error ? this.state.goodData : this.state.data }
+                        series={ this.state.error ? this.state.goodSeries : this.state.series } />
+                
+                    : <TimeSeriesGraph 
+                        data={this.state.error ? this.state.goodData : this.state.data} 
+                        series={this.state.error ? this.state.goodSeries: this.state.series}
+                        startRagged={this.state.startRagged}
+                        endRagged={this.state.endRagged} />
+
+                }
                 <div className="data-editor">
 
                     <div>

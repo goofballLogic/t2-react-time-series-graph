@@ -3,7 +3,6 @@ import React from "react";
 const defaultFormatTooltipDate = x => new Date( x ).toLocaleDateString();
 const TimeSeriesTooltip = ( { payload, series, formatTooltipDate } ) => {
 
-
     const firstPayload = payload && payload[ 0 ] && payload[ 0 ].payload;
     if ( !firstPayload ) { return null; }
     const { dateWhen, runningTotals } = firstPayload;
