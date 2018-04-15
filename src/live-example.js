@@ -22,6 +22,8 @@ function seedData() {
 const GRAPH = "0";
 const TABLE = "1";
 
+const simpleDateFormat = x => new Date( x ).toDateString();
+
 export class LiveExample extends Component {
 
     constructor() {
@@ -109,13 +111,16 @@ export class LiveExample extends Component {
                 
                     ? <TimeSeriesTable
                         data={ this.state.error ? this.state.goodData : this.state.data }
-                        series={ this.state.error ? this.state.goodSeries : this.state.series } />
+                        series={ this.state.error ? this.state.goodSeries : this.state.series }
+                        formatTableDate={ simpleDateFormat } />
                 
                     : <TimeSeriesGraph 
                         data={this.state.error ? this.state.goodData : this.state.data} 
                         series={this.state.error ? this.state.goodSeries: this.state.series}
                         startRagged={this.state.startRagged}
-                        endRagged={this.state.endRagged} />
+                        endRagged={this.state.endRagged}
+                        formatTickDate={ simpleDateFormat }
+                        formatTooltipDate={ simpleDateFormat } />
 
                 }
                 <div className="data-editor">
