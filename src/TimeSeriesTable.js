@@ -72,8 +72,11 @@ const render = ( { data, series, formatTableDate, selectWhen } ) => (
                                         
                                     <tr key={ i }>
                                         
-                                        <td>{ evt.s.name }</td>
-                                        <td>{ evt.score }</td>
+                                        <td>
+                                            <span className="swatch" style={{ backgroundColor: `rgba(${evt.s.color})` }}>&nbsp;</span>
+                                            { evt.s.name }
+                                        </td>
+                                        <td className={ evt.score < 0 ? "down" : evt.score > 0 ? "up" : "" }>{ evt.score }</td>
                                         <td>{ evt.description }</td>
 
                                     </tr>
