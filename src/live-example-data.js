@@ -73,6 +73,19 @@ const weekString = date => {
 
 };
 
+const negativeVerb = [ "duplicated", "forgot to document", "didn't take care of", "made a mess of", "didn't communicate changes to", "created bugs in", "forgot to check-in", "didn't test" ];
+const positiveVerb = [ "removed redundant stuff from", "enhanced", "demo'd changes to", "built some better", "did awesome things to", "delivered", "smashed it with", "was generally awesome while working on" ];
+const object = [ "CSS", "HTML", "the documentation", "the test plan", "new components", "the deployment" ];
+
+function describe( series, evt ) {
+
+    const s = series.find( s => s.id === evt.id ).name;
+    const v = evt.score < 0 ? oneof( negativeVerb ) : oneof( positiveVerb )
+    const o = oneof( object );
+    return { ...evt, description: `${s} ${v} ${o}` };
+
+}
+
 export function generateEventData( series, minDate, maxDate ) {
 
     const events = [];
@@ -81,12 +94,12 @@ export function generateEventData( series, minDate, maxDate ) {
 
         id: oneof( ids ),
         when: weekString( dateBetween( minDate, maxDate ) ),
-        score: truthyNumberBetween( -10, 10 )
+        score: truthyNumberBetween( -3, 5 )
 
     } );
     for( let i = 0; i < series.length * 10; i++ ) {
 
-        events.push( generateEvent() );
+        events.push( describe( series, generateEvent() ) );
 
     }
     return events;

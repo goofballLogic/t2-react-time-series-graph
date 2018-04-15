@@ -46,6 +46,14 @@ export class LiveExample extends Component {
 
     }
 
+    selectWhen( when ) {
+
+        const dataKey = this.state.error ? "goodData" : "data";
+        const data = this.state[ dataKey ].map( x => ( { ...x, selected: x.when === when ? !x.selected : x.selected } ) );
+        this.setState( { [ dataKey ] : data } );
+
+    }
+
     handleClick() {
 
         this.setState( seedData() );
@@ -112,7 +120,8 @@ export class LiveExample extends Component {
                     ? <TimeSeriesTable
                         data={ this.state.error ? this.state.goodData : this.state.data }
                         series={ this.state.error ? this.state.goodSeries : this.state.series }
-                        formatTableDate={ simpleDateFormat } />
+                        formatTableDate={ simpleDateFormat }
+                        selectWhen={ when => this.selectWhen( when ) } />
                 
                     : <TimeSeriesGraph 
                         data={this.state.error ? this.state.goodData : this.state.data} 
