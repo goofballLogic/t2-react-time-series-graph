@@ -3,19 +3,23 @@ layout: default
 title: Home
 ---
 
-<h1>What does a graph look like?</h1>
+<nav>
+    <a href="#sample-code">Sample code</a>
+    <a href="#live-example">Live example</a>
+</nav>
+<h1 id="intro">What does a graph look like?</h1>
 
 This one has some custom CSS applied to it:
 <img src="sample.png" />
 
 <style>
 
-    .live-example {
+    #live-example, table, tr, td, th {
 
         font-size: 8pt;
 
     }
-    .live-example .tooltip {
+    #live-example .tooltip {
 
         background-color: rgba( 255, 255, 255, 0.9 );
         box-shadow: 3px 3px 1px 1px silver;
@@ -25,14 +29,14 @@ This one has some custom CSS applied to it:
         border: solid 1px black;
 
     }
-    .live-example .tooltip p {
+    #live-example .tooltip p {
 
         margin: 0;
         font-size: 1.2em;
         line-height: 1.5;
 
     }
-    .live-example .tooltip .when {
+    #live-example .tooltip .when {
 
         background-color: black;
         color: white;
@@ -40,53 +44,53 @@ This one has some custom CSS applied to it:
         margin: -10px -10px 5px -10px;
 
     }
-    .live-example .tooltip .scores {
+    #live-example .tooltip .scores {
 
         display: flex;
         white-space: nowrap;
 
     }
-    .live-example .tooltip .scores .score-name,
-    .live-example .tooltip .scores .score-score {
+    #live-example .tooltip .scores .score-name,
+    #live-example .tooltip .scores .score-score {
 
         flex: 1;
         text-align: left;
 
     }
-    .live-example .tooltip .scores .score-score {
+    #live-example .tooltip .scores .score-score {
 
         text-align: right;
 
     }
-    .live-example path {
+    #live-example path {
 
         stroke-width: 4;
         stroke-opacity: 0.5;
 
     }
 
-    .live-example .data-editor {
+    #live-example .data-editor {
 
         display: flex;
 
     }
-    .live-example .data-editor > div {
+    #live-example .data-editor > div {
 
         flex: 1;
 
     }
-    .live-example .data-editor > div + div {
+    #live-example .data-editor > div + div {
 
         margin-left: 10px;
 
     }
-    .live-example .editor {
+    #live-example .editor {
 
         padding: 20px;
         background-color: #FAFAFA;
         
     }
-    .live-example textarea {
+    #live-example textarea {
 
         min-height: 300px;
         width: 100%;
@@ -95,7 +99,7 @@ This one has some custom CSS applied to it:
         background-color: transparent;
 
     }
-    .live-example .plot-data, .main-content .live-example .plot-data {
+    #live-example .plot-data, .main-content #live-example .plot-data {
 
         max-height: 500px;
         overflow: auto;
