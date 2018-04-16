@@ -1,4 +1,5 @@
 import React from "react";
+import Swatch from "./Swatch";
 
 const defaultFormatTooltipDate = x => new Date( x ).toLocaleDateString();
 const TimeSeriesTooltip = ( { payload, series, formatTooltipDate } ) => {
@@ -19,7 +20,7 @@ const TimeSeriesTooltip = ( { payload, series, formatTooltipDate } ) => {
             
                     <p className="scores" key={ s.id }>
 
-                        <span className="score-name">{ s.name }</span>
+                        <span className="score-name"><Swatch {...s} />{ s.name }</span>
                         <span className="score-score">{ s.total }</span>
 
                     </p>

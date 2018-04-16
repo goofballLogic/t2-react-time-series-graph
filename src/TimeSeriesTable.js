@@ -1,4 +1,5 @@
 import React from "react";
+import Swatch from "./Swatch";
 
 const defaultFormatTableDate = x => new Date( x ).toLocaleDateString();
 
@@ -24,7 +25,7 @@ const render = ( { data, series, formatTableDate, selectWhen } ) => (
                 <th>When</th>
                 { series.map( s => <th key={ s.id }>
                 
-                    <span className="swatch" style={{ backgroundColor: `rgba(${s.color})` }}>&nbsp;</span>
+                    <Swatch {...s} />
                     { s.name }
                 
                 </th> ) }
@@ -73,8 +74,10 @@ const render = ( { data, series, formatTableDate, selectWhen } ) => (
                                     <tr key={ i }>
                                         
                                         <td>
-                                            <span className="swatch" style={{ backgroundColor: `rgba(${evt.s.color})` }}>&nbsp;</span>
+                                        
+                                            <Swatch {...evt.s} />
                                             { evt.s.name }
+                                            
                                         </td>
                                         <td className={ evt.score < 0 ? "down" : evt.score > 0 ? "up" : "" }>{ evt.score }</td>
                                         <td>{ evt.description }</td>

@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import TimeSeriesGraph from "./TimeSeriesGraph";
 import TimeSeriesTable from "./TimeSeriesTable";
 import TimeSeriesEventTable from "./TimeSeriesEventTable";
+import TimeSeriesStreaks, { consecutiveUpStreaks, sequentialUpStreakSums, consecutiveUpStreakSums } from "./TimeSeriesStreaks";
 import { generateSeries, generateEventData } from "./live-example-data";
 import accumulate from "./accumulate";
 import debounce from "debounce";
@@ -23,8 +24,29 @@ function seedData() {
 const GRAPH = "0";
 const TABLE = "1";
 const EVENTS = "2";
+const STREAKS = "3";
 
 const simpleDateFormat = x => new Date( x ).toDateString();
+
+const Streaks = ( { series, events, data } ) => (
+
+    <div>
+    
+        <h2>Longest streak (Scores of 0 allowed)</h2>
+        <TimeSeriesStreaks series={series} events={events} data={data} />
+        
+        <h2>Longest streak (scored up every time events were recorded)</h2>
+        <TimeSeriesStreaks series={series} events={events} data={data} strategy={consecutiveUpStreaks} />
+        
+        <h2>Biggest streak (Scores of 0 allowed)</h2>
+        <TimeSeriesStreaks series={series} events={events} data={data} strategy={sequentialUpStreakSums} />
+        
+        <h2>Biggest streak (scored up every time events were recorded)</h2>
+        <TimeSeriesStreaks series={series} events={events} data={data} strategy={consecutiveUpStreakSums} />
+        
+    </div>
+    
+);
 
 export class LiveExample extends Component {
 
@@ -111,6 +133,7 @@ export class LiveExample extends Component {
                     <option value={ GRAPH }>Graph</option>
                     <option value={ TABLE }>Table</option>
                     <option value={ EVENTS }>Events</option>
+                    <option value={ STREAKS }>Streaks</option>
 
                 </select>
                 <p>
@@ -138,6 +161,13 @@ export class LiveExample extends Component {
                         series={ this.state.error ? this.state.goodSeries : this.state.series }
                         formatTableDate={ simpleDateFormat }
                         selectEvent={ evt => this.selectEvent( evt ) } />
+                    
+                    : this.state.display === STREAKS
+                    ? <Streaks
+                        events={ this.state.error ? this.state.goodEvents : this.state.events }
+                        data={ this.state.error ? this.state.goodData : this.state.data }
+                        series={ this.state.error ? this.state.goodSeries : this.state.series }
+                        />
                         
                     : <TimeSeriesGraph 
                         data={this.state.error ? this.state.goodData : this.state.data} 

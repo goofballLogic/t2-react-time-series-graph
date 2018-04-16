@@ -1,4 +1,5 @@
 import React from "react";
+import Swatch from "./Swatch";
 
 const noop = () => {};
 
@@ -35,7 +36,7 @@ const render = ( { events, series, formatTableDate, selectWhen } ) => (
 
                     <td>{ formatTableDate( new Date( evt.when ) ) }</td>
                     <td>
-                        <span className="swatch" style={{ backgroundColor: `rgba(${evt.s.color})` }}>&nbsp;</span>
+                        <Swatch {...evt.s} />
                         { evt.s.name  }
                     </td>
                     <td className={ evt.score < 0 ? "down" : evt.score > 0 ? "up" : "" }>{ evt.score }</td>
