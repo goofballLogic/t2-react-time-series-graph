@@ -32,8 +32,10 @@ function maxConsecutive( items, inclusionTest, inclusionsStrategy ) {
     
 }
 
-function maxSumConsecutive( items, valueStrategy, inclusionsStrategy ) {
+function maxSumConsecutive( items, valueStrategy, allowNoChange, inclusionsStrategy ) {
     
+    let runningMin = 0;
+    let runningMax = 0;
     let running = 0;
     let runningIncluded = [];
     
@@ -43,14 +45,25 @@ function maxSumConsecutive( items, valueStrategy, inclusionsStrategy ) {
     for( let i = 0; i < items.length; i++ ) {
         
         const value = valueStrategy( items[ i ] );
-        if ( typeof value === "undefined" || value === null || value < 0 ) {
-         
+        if ( ( 
+            
+                value < runningMax
+            
+            ) || ( 
+                
+                !allowNoChange && ( typeof value === "undefined" || value === runningMax ) 
+                
+            ) ) {
+console.log( "Resetting", value, runningMax, allowNoChange );
+            runningMax = value || runningMax;
+            runningMin = value || runningMax;
             running = 0;
             runningIncluded = [];
             
         } else {
             
-            running += Number( value );
+            runningMax = value;
+            running = runningMax - runningMin;
             runningIncluded = runningIncluded.concat( inclusionsStrategy( items[ i ] ) );
             if ( running >= max ) {
                 
@@ -127,7 +140,8 @@ export function consecutiveUpStreakSums( series, data ) {
         streak: maxSumConsecutive(
             
             data,
-            d => d.points[ s.id ] || undefined,
+            d => d.runningTotals[ s.id ],
+            false,
             d => d.events.filter( evt => evt.id === s.id )
             
         )
@@ -139,14 +153,15 @@ export function consecutiveUpStreakSums( series, data ) {
 
 export function sequentialUpStreakSums( series, data ) {
     
-    const streaks = series.map( s => ( {
+    const streaks = series.map( s => console.log( "suss for", series.name ) || ( {
     
         id: s.id,
         series: s,
         streak: maxSumConsecutive(
         
             data,
-            d => d.points[ s.id ] || 0,
+            d => d.runningTotals[ s.id ],
+            true,
             d => d.events.filter( evt => evt.id === s.id )
             
         )
