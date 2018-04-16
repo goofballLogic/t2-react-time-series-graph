@@ -54,7 +54,6 @@ function maxSumConsecutive( items, valueStrategy, allowNoChange, inclusionsStrat
                 !allowNoChange && ( typeof value === "undefined" || value === runningMax ) 
                 
             ) ) {
-console.log( "Resetting", value, runningMax, allowNoChange );
             runningMax = value || runningMax;
             runningMin = value || runningMax;
             running = 0;
@@ -153,7 +152,7 @@ export function consecutiveUpStreakSums( series, data ) {
 
 export function sequentialUpStreakSums( series, data ) {
     
-    const streaks = series.map( s => console.log( "suss for", series.name ) || ( {
+    const streaks = series.map( s => ( {
     
         id: s.id,
         series: s,

@@ -1,6 +1,9 @@
 import TimeSeriesGraph from "./TimeSeriesGraph";
 import TimeSeriesTooltip from "./TimeSeriesTooltip";
-import accumulate from "./accumulate";
+import TimeSeriesTable from "./TimeSeriesTable";
+import TimeSeriesStreaks from "./TimeSeriesStreaks";
+import TimeSeriesEventTable from "./TimeSeriesEventTable";
 
+import accumulate from "./accumulate";
 export default TimeSeriesGraph;
-export { TimeSeriesGraph, TimeSeriesTooltip, accumulate };
+export { TimeSeriesGraph, TimeSeriesTooltip, TimeSeriesTable, TimeSeriesStreaks, TimeSeriesEventTable, accumulate };
