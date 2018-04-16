@@ -20,7 +20,7 @@ function shuffle(array) {
 
 const randoms = ( arr, n ) => shuffle( arr.slice( 0 ) ).slice( 0, n );
 
-const names = [ "Andrew", "Gareth", "Bob", "Niamh", "Stephen", "Chris", "Sarah-Jane", "Janet", "Jonathan", "Dirk", "Imran", "Sam", "Jon", "Lisa", "Gabi", "Saemus", "Duncan", "Dubravka" ];
+const names = [ "Andrew", "Gareth", "Bob", "Niamh", "Stephen", "Chris", "Sarah-Jane", "Janet", "Jonathan", "Dirk", "Imran", "Sam", "Jon", "Lisa", "Gabi", "Saemus", "Duncan", "Dubravka", "Tia", "Yashi", "Ethan", "Elliott" ];
 
 const colors = [
     
