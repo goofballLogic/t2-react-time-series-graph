@@ -8,6 +8,9 @@ import { generateSeries, generateEventData } from "./live-example-data";
 import accumulate from "./accumulate";
 import debounce from "debounce";
 
+export { TimeSeriesGraph, TimeSeriesTable, TimeSeriesEventTable, TimeSeriesStreaks, consecutiveUpStreaks, sequentialUpStreakSums, consecutiveUpStreakSums };
+export { React, Component, render };
+
 function seedData() {
 
     const series = generateSeries( 6 );
