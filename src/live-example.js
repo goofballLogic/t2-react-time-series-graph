@@ -8,8 +8,20 @@ import { generateSeries, generateEventData } from "./live-example-data";
 import accumulate from "./accumulate";
 import debounce from "debounce";
 
-export { TimeSeriesGraph, TimeSeriesTable, TimeSeriesEventTable, TimeSeriesStreaks, consecutiveUpStreaks, sequentialUpStreakSums, consecutiveUpStreakSums };
-export { React, Component, render };
+export const samples = { 
+    
+    TimeSeriesGraph, 
+    TimeSeriesTable,
+    TimeSeriesEventTable,
+    TimeSeriesStreaks,
+    consecutiveUpStreaks,
+    sequentialUpStreakSums,
+    consecutiveUpStreakSums,
+    React,
+    Component,
+    render
+    
+};
 
 function seedData() {
 
@@ -225,6 +237,8 @@ export class LiveExample extends Component {
     }
 
 }
+
+//// http://tc2-react-time-series-graph-goofballlogic.c9users.io/
 
 export const renderLiveExample = selector => 
 
