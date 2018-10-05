@@ -36,7 +36,7 @@ function ensureDefaults( seriesIds, tidyData, startRagged, endRagged  ) {
 
 const TimeSeriesGraph = props => {
 
-    const { formatTickDate, data, series, endRagged, startRagged } = props;
+    const { formatTickDate, data, series, endRagged, startRagged, minTickGap = 20 } = props;
     if ( !data ) { throw new Error( "Missing property: data" ); }
     if ( !series ) { throw new Error( "Missing property: series" ); }
     if ( !data.length ) { return <div>No data</div>; }
@@ -63,7 +63,7 @@ const TimeSeriesGraph = props => {
             ) }
             <Legend />
             <Tooltip content={<TimeSeriesTooltip {...props} />} active={true}/>
-            <XAxis dataKey="when" tickFormatter={formatTickDate || defaultFormatTickDate} type="number" domain={ [ "dataMin", "dataMax" ] } tickCount={999} />
+            <XAxis dataKey="when" tickFormatter={formatTickDate || defaultFormatTickDate} type="number" domain={ [ "dataMin", "dataMax" ] } tickCount={999} minTickGap={ minTickGap } />
             <YAxis type="number" domain={ [ "dataMin - 2", "dataMax + 2" ] } tickCount={10} />
             <ReferenceLine y={0} stroke="black" />
 
