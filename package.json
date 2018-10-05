@@ -1,6 +1,6 @@
 {
   "name": "tc2-react-time-series-graph",
-  "version": "0.0.14",
+  "version": "0.1.0",
   "description": "A react component for drawing time-series graphs",
   "main": "dist/bundle.js",
   "scripts": {
